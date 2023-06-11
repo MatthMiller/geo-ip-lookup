@@ -16,12 +16,13 @@ const fetchData = async (ipAddress) => {
       if (json?.status === 'success') {
         loadingState.stopLoading();
         showResponseData(json);
-        resolve();
       } else if (json?.status === 'fail') {
         loadingState.stopLoading();
         console.log('\n\x1b[91mIP address not found.\x1b[97m\n');
-        resolve();
+      } else {
+        console.log('\n\x1b[91mUnexpected Error\x1b[97m\n');
       }
+      resolve();
     } catch (error) {
       throw error;
     }
